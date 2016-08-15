@@ -50,15 +50,17 @@ angular.module('starter.controllers', [])
     });
   }
     //product to add to the database
-    product = $scope.product;
-    console.log(product);
+    // product = $scope.product;
+    // console.log(product);
     $scope.addProduct = function(product) {
+      $scope.product = "";
       $http.post("http://localhost:8000/addProduct", {"product": product})
       .then(function(data) {
         var myPopup = $ionicPopup.alert({
           title: "Yippee!",
           template: "Your product was added"
         });
+
         refreshList();
       });
     };

@@ -1,8 +1,17 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ngCordova'])
 
-.controller('HomeCtrl', function($scope, $http) {
+.controller('HomeCtrl', function($scope, $http, $cordovaBarcodeScanner) {
+  $scope.scanBarcode = function() {
+    $cordovaBarcodeScanner.scan().then(function(imageData) {
+      $scope.getInfo(imageData.text);
+      console.log(imageData.text);
+      console.log("Barcode Format -> " + imageData.format);
+    }, function(error) {
+      console.log("An error happened -> " + error);
+    });
+  };
   $scope.getInfo = function(barcode) {
-    $http({url:"http://localhost:8000/checkbarcode/" + barcode}).then(function(data) {
+    $http({url:"http://03622168.ngrok.io/checkbarcode/" + barcode}).then(function(data) {
       console.log("data", data);
       console.log("ingredients", data.data.nf_ingredient_statement);
       $scope.item_name = data.data.item_name;
@@ -12,7 +21,7 @@ angular.module('starter.controllers', [])
       if (data.data.nf_ingredient_statement === null) {
         $scope.message = "Ut oh! Looks like we can't find the ingredients... please check the manufacturer website";
       } else {
-        return $http.post("http://localhost:8000/checkingredients", ingredientArry(data.data.nf_ingredient_statement)).then(function(data){
+        return $http.post("http://03622168.ngrok.io/checkingredients", ingredientArry(data.data.nf_ingredient_statement)).then(function(data){
           console.log(data);
           //gives an array of objects
           var results = data.data;
@@ -41,7 +50,7 @@ angular.module('starter.controllers', [])
 .controller('ProductsCtrl', function($scope, $http, $ionicPopup) {
   function refreshList() {
   //get list of products from db
-    $http({url:"http://localhost:8000/products/"})
+    $http({url:"http://03622168.ngrok.io/products/"})
     .then(function(data){
       console.log(data);
       //tie products to the scope
@@ -49,12 +58,10 @@ angular.module('starter.controllers', [])
       products = $scope.products;
     });
   }
-    //product to add to the database
-    // product = $scope.product;
-    // console.log(product);
+
     $scope.addProduct = function(product) {
       $scope.product = "";
-      $http.post("http://localhost:8000/addProduct", {"product": product})
+      $http.post("http://03622168.ngrok.io/addProduct", {"product": product})
       .then(function(data) {
         var myPopup = $ionicPopup.alert({
           title: "Yippee!",
@@ -68,12 +75,6 @@ angular.module('starter.controllers', [])
 });
 
 
-//
-// .controller('InfoCtrl', function($scope) {
-//   $scope.settings = {
-//     enableFriends: true
-//   };
-// });
 
 function ingredientArry(str) {
   str = str.toLowerCase();

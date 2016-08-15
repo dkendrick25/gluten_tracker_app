@@ -17,9 +17,10 @@
     </div>
   </div>
   <div class="row">
-    <button class="button button-full button-dark icon-right ion-qr-scanner ">
+    <button ng-click="scanBarcode()" class="button button-full button-dark icon-right ion-qr-scanner ">
        Use Barcode Scanner
     </button>
+    {{debugMessage}}
   </div>
   <div class="row">
     <div class="col">

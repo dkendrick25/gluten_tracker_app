@@ -1,0 +1,55 @@
+<ion-view view-title="Gluten Tracker">
+  <ion-content class="padding">
+    <div class="row">
+      <div class="col">
+      <form ng-submit="getInfo(barcode)">
+        <div class="list">
+          <div class="item item-input-inset">
+            <label class="item-input-wrapper">
+              <input type="text" placeholder="Enter 12-digit Barcode" ng-model="barcode">
+            </label>
+            <button class="button button-small">
+              Submit
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <button class="button button-full button-dark icon-right ion-qr-scanner ">
+       Use Barcode Scanner
+    </button>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="item item-divider">
+          Brand
+        </div>
+        <div class="item item-text-wrap">
+          {{brand_name}}
+        </div>
+        <div class="item item-divider">
+          Item
+        </div>
+        <div class="item item-text-wrap">
+          {{item_name}}
+        </div>
+        <div class="item item-divider">
+          Gluten Status
+        </div>
+        <div class="item item-text-wrap">
+          {{message}}
+        </div>
+        <div class="item item-divider">
+          Problem ingredient
+        </div>
+        <div class="item item-text-wrap">
+          {{ingredient}}
+        </div>
+      </div>
+    </div>
+  </div>
+  </ion-content>
+</ion-view>

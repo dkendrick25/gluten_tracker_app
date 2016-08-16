@@ -4,11 +4,11 @@
       <div class="col">
       <form ng-submit="getInfo(barcode)">
         <div class="list">
-          <div class="item item-input-inset">
-            <label class="item-input-wrapper">
+          <div class="item item-input-inset inputBackground">
+            <label class="item-input-wrapper itemInput">
               <input type="text" placeholder="Enter 12-digit Barcode" ng-model="barcode">
             </label>
-            <button class="button button-small">
+            <button class="button button-small" id="submitButton">
               Submit
             </button>
           </div>
@@ -17,7 +17,7 @@
     </div>
   </div>
   <div class="row">
-    <button ng-click="scanBarcode()" class="button button-full button-dark icon-right ion-qr-scanner ">
+    <button ng-click="scanBarcode()" class="button button-full button-dark icon-right ion-qr-scanner" id="scanButton">
        Use Barcode Scanner
     </button>
     {{debugMessage}}
@@ -28,25 +28,25 @@
         <div class="item item-divider">
           Brand
         </div>
-        <div class="item item-text-wrap">
+        <div class="item item-text-wrap itemText">
           {{brand_name}}
         </div>
         <div class="item item-divider">
           Item
         </div>
-        <div class="item item-text-wrap">
+        <div class="item item-text-wrap itemText">
           {{item_name}}
         </div>
-        <div class="item item-divider">
+        <div class="item item-divider" id="glutenStatusText">
           Gluten Status
         </div>
-        <div class="item item-text-wrap">
+        <div class="item item-text-wrap itemText" id="glutenStatusMessage">
           {{message}}
         </div>
         <div class="item item-divider">
           Problem Ingredient
         </div>
-        <div class="item item-text-wrap">
+        <div class="item item-text-wrap itemText">
           {{ingredient}}
         </div>
       </div>

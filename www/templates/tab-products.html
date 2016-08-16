@@ -1,17 +1,17 @@
 <ion-view view-title="Common Products to Check">
   <ion-content>
     <div class="list">
-        <div class="item item-input-inset">
-          <label class="item-input-wrapper">
+        <div class="item item-input-inset inputBackground">
+          <label class="item-input-wrapper itemInput">
           <input type="text" placeholder="Add Product" ng-model="$parent.product">
           </label>
-          <button ng-click="addProduct(product)" class="button button-small">
+          <button ng-click="addProduct(product)" class="button button-small" id="addButton">
             <i class="ion-plus-round"></i>Add
           </button>
         </div>
       </div>
     <ul class="list">
-      <li class="item" ng-repeat="product in products">
+      <li class="item productList" ng-repeat="product in products">
         {{product.name}}
       </li>
   </ul>

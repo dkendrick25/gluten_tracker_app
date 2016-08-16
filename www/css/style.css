@@ -1,5 +1,93 @@
 /* Empty. Add your own CSS if you like */
-* {
+body, .pane {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color:;
+  background-color: #E9E9E9;
+}
+
+.scannerTab, .tab-item {
+  background-color: #0CC5E3;
+  color: white;
+}
+
+.productsTab {
+  background-color: #A17CFF;
+  color: white;
+}
+
+.infoTab {
+  background-color: #FF5736;
+  color: white;
+}
+
+.headerTitleBar {
+  background-color: #E9E9E9;
+  color: #575757;
+}
+
+.bar .title {
+  text-align: left;
+  font-size: 1.5em;
+}
+
+#scanButton {
+  font-weight: bold;
+  letter-spacing: 1px;
+  border-radius: 5px;
+}
+
+#submitButton {
+  color: #0CC5E3;
+  font-weight: bold;
+}
+
+.inputBackground {
+  background-color: #E9E9E9;
+  border: none;
+}
+
+.itemInput {
+  background-color: #DADADA;
+}
+
+.item-divider {
+  background-color: #DADADA;
+  color: #777777;
+}
+
+#glutenStatusText {
+  color: #0CC5E3;
+  font-weight: bold;
+}
+
+#glutenStatusMessage {
+  font-weight: bold;
+}
+
+.itemText {
+  background-color: #F4F4F4;
+}
+
+#addButton {
+  color: #A17CFF;
+  font-weight: bold;
+}
+
+.productList {
+  background-color: #E9E9E9;
+  border-color: #8D8D8D;
+}
+
+.glutenStep {
+  color: #0CC5E3;
+  font-weight: bold;
+}
+
+.productStep {
+  color: #A17CFF;
+  font-weight: bold;
+}
+
+.infoStep {
+  color: #FF5736;
+  font-weight: bold;
 }

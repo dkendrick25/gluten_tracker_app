@@ -11,6 +11,7 @@ angular.module('starter.controllers', ['ngCordova'])
     });
   };
   $scope.getInfo = function(barcode) {
+    $scope.ingredient = "";
     $http({url:"http://290f95d3.ngrok.io/checkbarcode/" + barcode}).then(function(data) {
       console.log("data", data);
       console.log("ingredients", data.data.nf_ingredient_statement);
@@ -18,7 +19,7 @@ angular.module('starter.controllers', ['ngCordova'])
       console.log('item name:', data.data.item_name);
       $scope.brand_name = data.data.brand_name;
       console.log('brand name:', data.data.brand_name);
-      if (data.data.nf_ingredient_statement === null) {
+      if (data.data.nf_ingredient_statement === null || data.data.nf_ingredient_statement === undefined) {
         $scope.message = "Ut oh! Looks like we can't find the ingredients... please check the manufacturer website";
       } else {
         return $http.post("http://290f95d3.ngrok.io/checkingredients", ingredientArry(data.data.nf_ingredient_statement)).then(function(data){

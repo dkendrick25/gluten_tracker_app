@@ -4,14 +4,14 @@ angular.module('starter.controllers', ['ngCordova'])
   $scope.scanBarcode = function() {
     $cordovaBarcodeScanner.scan().then(function(imageData) {
       $scope.getInfo(imageData.text);
-      console.log(imageData.text);
-      console.log("Barcode Format -> " + imageData.format);
+      // console.log(imageData.text);
+      // console.log("Barcode Format -> " + imageData.format);
     }, function(error) {
       console.log("An error happened -> " + error);
     });
   };
   $scope.getInfo = function(barcode) {
-    $http({url:"http://03622168.ngrok.io/checkbarcode/" + barcode}).then(function(data) {
+    $http({url:"http://290f95d3.ngrok.io/checkbarcode/" + barcode}).then(function(data) {
       console.log("data", data);
       console.log("ingredients", data.data.nf_ingredient_statement);
       $scope.item_name = data.data.item_name;
@@ -21,7 +21,7 @@ angular.module('starter.controllers', ['ngCordova'])
       if (data.data.nf_ingredient_statement === null) {
         $scope.message = "Ut oh! Looks like we can't find the ingredients... please check the manufacturer website";
       } else {
-        return $http.post("http://03622168.ngrok.io/checkingredients", ingredientArry(data.data.nf_ingredient_statement)).then(function(data){
+        return $http.post("http://290f95d3.ngrok.io/checkingredients", ingredientArry(data.data.nf_ingredient_statement)).then(function(data){
           console.log(data);
           //gives an array of objects
           var results = data.data;
@@ -50,7 +50,7 @@ angular.module('starter.controllers', ['ngCordova'])
 .controller('ProductsCtrl', function($scope, $http, $ionicPopup) {
   function refreshList() {
   //get list of products from db
-    $http({url:"http://03622168.ngrok.io/products/"})
+    $http({url:"http://290f95d3.ngrok.io/products/"})
     .then(function(data){
       console.log(data);
       //tie products to the scope
@@ -61,7 +61,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
     $scope.addProduct = function(product) {
       $scope.product = "";
-      $http.post("http://03622168.ngrok.io/addProduct", {"product": product})
+      $http.post("http://290f95d3.ngrok.io/addProduct", {"product": product})
       .then(function(data) {
         var myPopup = $ionicPopup.alert({
           title: "Yippee!",

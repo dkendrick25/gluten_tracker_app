@@ -20,7 +20,6 @@
     <button ng-click="scanBarcode()" class="button button-full button-dark icon-right ion-qr-scanner" id="scanButton">
        Use Barcode Scanner
     </button>
-    {{debugMessage}}
   </div>
   <div class="row">
     <div class="col">
@@ -44,10 +43,16 @@
           {{message}}
         </div>
         <div class="item item-divider">
-          Problem Ingredient
+          Gluten Ingredient
         </div>
         <div class="item item-text-wrap itemText">
-          {{ingredient}}
+          <div ng-repeat="ingredient in glutenIngredients">{{ingredient}}</div>
+        </div>
+        <div class="item item-divider">
+          Potential Problem Ingredient
+        </div>
+        <div class="item item-text-wrap itemText" >
+          <div ng-repeat="mIngredient in problemIngredients">{{mIngredient}}</div>
         </div>
       </div>
     </div>

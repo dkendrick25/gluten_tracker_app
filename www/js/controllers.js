@@ -11,8 +11,9 @@ angular.module('starter.controllers', ['ngCordova'])
     });
   };
   $scope.getInfo = function(barcode) {
-    $scope.ingredient = "";
-    $http({url:"http://290f95d3.ngrok.io/checkbarcode/" + barcode}).then(function(data) {
+    $scope.glutenIngredients = "";
+    $scope.problemIngredients = "";
+    $http({url:"http://0fe3dfd6.ngrok.io/checkbarcode/" + barcode}).then(function(data) {
       console.log("data", data);
       console.log("ingredients", data.data.nf_ingredient_statement);
       $scope.item_name = data.data.item_name;
@@ -22,24 +23,25 @@ angular.module('starter.controllers', ['ngCordova'])
       if (data.data.nf_ingredient_statement === null || data.data.nf_ingredient_statement === undefined) {
         $scope.message = "Ut oh! Looks like we can't find the ingredients... please check the manufacturer website";
       } else {
-        return $http.post("http://290f95d3.ngrok.io/checkingredients", ingredientArry(data.data.nf_ingredient_statement)).then(function(data){
+        return $http.post("http://0fe3dfd6.ngrok.io/checkingredients", ingredientArry(data.data.nf_ingredient_statement)).then(function(data){
           console.log(data);
           //gives an array of objects
           var results = data.data;
+          var glutenIngredients = [];
+          var problemIngredients = [];
           if (results.length === 0) {
             $scope.message = "YAY ... NO GLUTEN FOUND! Put it in your cart!";
             console.log("item does not contain gluten");
           }
           for (var i = 0; i < results.length; i++) {
-            if(results[i].contain_gluten === "g") {
-              $scope.message = "OH NO... CONTAINS GLUTEN!! Sorry but it needs to go back on the shelf!";
-              $scope.ingredient = results[i].ingredient;
-              break;
-              // console.log("item contains gluten");
-            } else if (results[i].contain_gluten === "m") {
+            if (results[i].contain_gluten === "m") {
               $scope.message = "MIGHT Contain Gluten, Please check the manufacturer website!";
-              $scope.ingredient = results[i].ingredient;
-              console.log("item could contain gluten");
+              problemIngredients.push(results[i].ingredient);
+              $scope.problemIngredients = problemIngredients;
+            } else if(results[i].contain_gluten === "g") {
+              $scope.message = "OH NO... CONTAINS GLUTEN!! Sorry but it needs to go back on the shelf!";
+              glutenIngredients.push(results[i].ingredient);
+              $scope.glutenIngredients = glutenIngredients;
             }
           }
         });
@@ -51,7 +53,7 @@ angular.module('starter.controllers', ['ngCordova'])
 .controller('ProductsCtrl', function($scope, $http, $ionicPopup) {
   function refreshList() {
   //get list of products from db
-    $http({url:"http://290f95d3.ngrok.io/products/"})
+    $http({url:"http://0fe3dfd6.ngrok.io/products/"})
     .then(function(data){
       console.log(data);
       //tie products to the scope
@@ -62,7 +64,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
     $scope.addProduct = function(product) {
       $scope.product = "";
-      $http.post("http://290f95d3.ngrok.io/addProduct", {"product": product})
+      $http.post("http://0fe3dfd6.ngrok.io/addProduct", {"product": product})
       .then(function(data) {
         var myPopup = $ionicPopup.alert({
           title: "Yippee!",

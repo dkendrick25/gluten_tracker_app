@@ -14,17 +14,17 @@ Need to avoid gluten? This app allows you to scan a barcode and have a response 
 
 ##ScreenShots
 
-![Home Page](screenShots/home.png "Home Page")
+![Home Page](/screenShots/home.png "Home Page")
 
 
-![barcode](screenShots/barcode.png "Scanner using Phone Camera")
+![barcode](/screenShots/barcode.png "Scanner using Phone Camera")
 
 
-![products](screenShots/products.png "Products Page")
+![products](/screenShots/products.png "Products Page")
 
-![alert](screenShots/alert.png "Alert after Product Added")
+![alert](/screenShots/alert.png "Alert after Product Added")
 
-![info](screenShots/info.png "Info Page")
+![info](/screenShots/info.png "Info Page")
 
 ###Things to Add
 * login feature with ability to choose allergy needs

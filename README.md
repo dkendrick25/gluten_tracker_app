@@ -1,25 +1,31 @@
-Ionic App Base
-=====================
+#Gluten Tracker App  
 
-A starting project for Ionic that optionally supports using custom SCSS.
+###Overview of the project
+Need to avoid gluten? This app allows you to scan a barcode and have a response if it contains gluten or not. The barcode is scanned via the phone camera or typed into the input. An api call is made to retrieve the ingredients and check them against the database of gluten containing ingredients. There is also a product page that contains common products to double check. Add to the list for everyone to be aware. Need more information to use it? Check out the info page. The backend is in a separate repo and is utilized by both the app and the web application.
 
-## Using this project
+##Technologies Used
+* Ionic
+* HTML
+* CSS
+* JavaScript
+* Angular.js
+* PostgreSQL
+* Node.js
 
-We recommend using the [Ionic CLI](https://github.com/driftyco/ionic-cli) to create new Ionic projects that are based on this project but use a ready-made starter template.
+##ScreenShots
 
-For example, to start a new Ionic project with the default tabs interface, make sure the `ionic` utility is installed:
+![Home Page](screenShots/home.png "Home Page")
 
-```bash
-$ npm install -g ionic
-```
 
-Then run: 
+![barcode](screenShots/barcode.png "Scanner using Phone Camera")
 
-```bash
-$ ionic start myProject tabs
-```
 
-More info on this can be found on the Ionic [Getting Started](http://ionicframework.com/getting-started) page and the [Ionic CLI](https://github.com/driftyco/ionic-cli) repo.
+![products](screenShots/products.png "Products Page")
 
-## Issues
-Issues have been disabled on this repo, if you do find an issue or have a question consider posting it on the [Ionic Forum](http://forum.ionicframework.com/).  Or else if there is truly an error, follow our guidelines for [submitting an issue](http://ionicframework.com/submit-issue/) to the main Ionic repository.
+![alert](screenShots/alert.png "Alert after Product Added")
+
+![info](screenShots/info.png "Info Page")
+
+###Things to Add
+* login feature with ability to choose allergy needs
+* add to database of products and ingredients

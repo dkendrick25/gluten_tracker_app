@@ -13,7 +13,7 @@ angular.module('starter.controllers', ['ngCordova'])
   $scope.getInfo = function(barcode) {
     $scope.glutenIngredients = "";
     $scope.problemIngredients = "";
-    $http({url:"http://6ba6a4f0.ngrok.io/checkbarcode/" + barcode}).then(function(data) {
+    $http({url:"http://7a3ec888.ngrok.io/checkbarcode/" + barcode}).then(function(data) {
       console.log("data", data);
       console.log("ingredients", data.data.nf_ingredient_statement);
       $scope.item_name = data.data.item_name;
@@ -21,9 +21,9 @@ angular.module('starter.controllers', ['ngCordova'])
       $scope.brand_name = data.data.brand_name;
       console.log('brand name:', data.data.brand_name);
       if (data.data.nf_ingredient_statement === null || data.data.nf_ingredient_statement === undefined) {
-        $scope.message = "Ut oh! Looks like we can't find the ingredients... please check the manufacturer website";
+        $scope.message = "Ut oh! Looks like we can't find the ingredients... please check the manufacturer's website";
       } else {
-        return $http.post("http://6ba6a4f0.ngrok.io/checkingredients", ingredientArry(data.data.nf_ingredient_statement)).then(function(data){
+        return $http.post("http://7a3ec888.ngrok.io/checkingredients", ingredientArry(data.data.nf_ingredient_statement)).then(function(data){
           console.log(data);
           //gives an array of objects
           var results = data.data;
@@ -35,7 +35,7 @@ angular.module('starter.controllers', ['ngCordova'])
           }
           for (var i = 0; i < results.length; i++) {
             if (results[i].contain_gluten === "m") {
-              $scope.message = "MIGHT Contain Gluten, Please check the manufacturer website!";
+              $scope.message = "MIGHT Contain Gluten, Please check the manufacturer's website!";
               problemIngredients.push(results[i].ingredient);
               $scope.problemIngredients = problemIngredients;
             } else if(results[i].contain_gluten === "g") {
@@ -47,6 +47,7 @@ angular.module('starter.controllers', ['ngCordova'])
           }
         });
       }
+      $scope.barcode = "";
     });
   };
 })
@@ -54,7 +55,7 @@ angular.module('starter.controllers', ['ngCordova'])
 .controller('ProductsCtrl', function($scope, $http, $ionicPopup) {
   function refreshList() {
   //get list of products from db
-    $http({url:"http://6ba6a4f0.ngrok.io/products/"})
+    $http({url:"http://7a3ec888.ngrok.io/products/"})
     .then(function(data){
       console.log(data);
       //tie products to the scope
@@ -65,7 +66,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
     $scope.addProduct = function(product) {
       $scope.product = "";
-      $http.post("http://6ba6a4f0.ngrok.io/addProduct", {"product": product})
+      $http.post("http://7a3ec888.ngrok.io/addProduct", {"product": product})
       .then(function(data) {
         var myPopup = $ionicPopup.alert({
           title: "Yippee!",

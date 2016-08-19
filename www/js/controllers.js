@@ -13,7 +13,7 @@ angular.module('starter.controllers', ['ngCordova'])
   $scope.getInfo = function(barcode) {
     $scope.glutenIngredients = "";
     $scope.problemIngredients = "";
-    $http({url:"http://7a3ec888.ngrok.io/checkbarcode/" + barcode}).then(function(data) {
+    $http({url:"https://kendrick-glutentracker-webapp.herokuapp.com/checkbarcode/" + barcode}).then(function(data) {
       console.log("data", data);
       console.log("ingredients", data.data.nf_ingredient_statement);
       $scope.item_name = data.data.item_name;
@@ -23,7 +23,7 @@ angular.module('starter.controllers', ['ngCordova'])
       if (data.data.nf_ingredient_statement === null || data.data.nf_ingredient_statement === undefined) {
         $scope.message = "Ut oh! Looks like we can't find the ingredients... please check the manufacturer's website";
       } else {
-        return $http.post("http://7a3ec888.ngrok.io/checkingredients", ingredientArry(data.data.nf_ingredient_statement)).then(function(data){
+        return $http.post("https://kendrick-glutentracker-webapp.herokuapp.com/checkingredients", ingredientArry(data.data.nf_ingredient_statement)).then(function(data){
           console.log(data);
           //gives an array of objects
           var results = data.data;
@@ -47,7 +47,7 @@ angular.module('starter.controllers', ['ngCordova'])
           }
         });
       }
-      $scope.barcode = "";
+      barcode = "";
     });
   };
 })
@@ -55,7 +55,7 @@ angular.module('starter.controllers', ['ngCordova'])
 .controller('ProductsCtrl', function($scope, $http, $ionicPopup) {
   function refreshList() {
   //get list of products from db
-    $http({url:"http://7a3ec888.ngrok.io/products/"})
+    $http({url:"https://kendrick-glutentracker-webapp.herokuapp.com/products/"})
     .then(function(data){
       console.log(data);
       //tie products to the scope
@@ -66,7 +66,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
     $scope.addProduct = function(product) {
       $scope.product = "";
-      $http.post("http://7a3ec888.ngrok.io/addProduct", {"product": product})
+      $http.post("https://kendrick-glutentracker-webapp.herokuapp.com/addProduct", {"product": product})
       .then(function(data) {
         var myPopup = $ionicPopup.alert({
           title: "Yippee!",
